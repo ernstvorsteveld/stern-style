@@ -7,6 +7,7 @@
 
 == How to
 
+.Commando's
 [source,bash]
 ----
 asciidoctor-pdf -v -a pdf-theme=./stern.yml -a pdf-fontsdir=./fonts <adoc-file>
@@ -15,3 +16,14 @@ asciidoctor -a stylesheet=stern.css <adoc-file>
 ----
 
 
+.Adoc attributes
+[source,adoc]
+----
+:toc:
+:toclevels: 4 
+:author: Ernst Vorsteveld, Stern it-consultants
+:title: {doctitle}
+:title-page:
+:revnumber: 0.2
+:revdate: 19-12-2021
+----
