@@ -12,12 +12,12 @@ font:
       bold: GEM_FONTS_DIR/mplus1mn-bold-subset.ttf
       italic: GEM_FONTS_DIR/mplus1mn-italic-subset.ttf
       bold_italic: GEM_FONTS_DIR/mplus1mn-bold_italic-subset.ttf
-    Poppins:
-      normal: ./poppins/Poppins-Regular.ttf
-      bold: ./poppins/Poppins-Bold.ttf
-      italic: ./poppins/Poppins-Italic.ttf
-      bold_italic: ./poppins/Poppins-BoldItalic.ttf
-      normal_italic: ./poppins/Poppins-Italic.ttf
+    # Poppins:
+    #   normal: ./poppins/Poppins-Regular.ttf
+    #   bold: ./poppins/Poppins-Bold.ttf
+    #   italic: ./poppins/Poppins-Italic.ttf
+    #   bold_italic: ./poppins/Poppins-BoldItalic.ttf
+    #   normal_italic: ./poppins/Poppins-Italic.ttf
     OpenSans:
       normal: ./opensans/OpenSans-Regular.ttf
       bold: ./opensans/OpenSans-Bold.ttf
