@@ -5,12 +5,13 @@
 :author: Ernst Vorsteveld
 
 
-== Steps
+== How to
 
 [source,bash]
 ----
-cd /Users/ernstvorsteveld/git/asciidoctor/docToolchain
-./gradlew -b init.gradle initExisting -PnewDocDir=/Users/ernstvorsteveld/git/asciidoctor/generate-docx
+asciidoctor-pdf -v -a pdf-theme=./stern.yml -a pdf-fontsdir=./fonts <adoc-file>
 
-ln -s /Users/ernstvorsteveld/git/asciidoctor/docToolchain/bin/doctoolchain /usr/bin/doctoolchain
+asciidoctor -a stylesheet=stern.css <adoc-file>
 ----
+
+
