@@ -1,0 +1,16 @@
+= DocToolChain usage
+:toc: left
+:toclevels: 4
+:sectnums:
+:author: Ernst Vorsteveld
+
+
+== Steps
+
+[source,bash]
+----
+cd /Users/ernstvorsteveld/git/asciidoctor/docToolchain
+./gradlew -b init.gradle initExisting -PnewDocDir=/Users/ernstvorsteveld/git/asciidoctor/generate-docx
+
+ln -s /Users/ernstvorsteveld/git/asciidoctor/docToolchain/bin/doctoolchain /usr/bin/doctoolchain
+----
