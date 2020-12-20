@@ -40,11 +40,34 @@ check_output_file_exists () {
     fi
 }
 
-check_output_file_parameter $2
-CHECK_FILE=$?
+check_output_type () {
+    OUTPUT_PARAM=$1
+    REQUESTED_TYPE=$2
+    if [[ "$OUTPUT_PARAM" == $REQUESTED_TYPE ]]
+    then
+        return 1
+    else
+        return 0
+    fi
+    echo "Error: input value for output type not recognized."
+    exit 1
+}
+
 PARAM_FILENAME=$1
-ADOC_PDF_THEME=/Users/ernstvorsteveld/git/asciidoctor/generate-docx/stern.yml
-ADOC_FONTS_DIR=/Users/ernstvorsteveld/git/asciidoctor/generate-docx/fonts
+PARAM_OUTPUT_TYPE=$2
+PARAM_CHECK_FILE=$3
+
+check_output_type $PARAM_OUTPUT_TYPE "PDF"
+OUTPUT_TYPE_PDF=$?
+check_output_type $PARAM_OUTPUT_TYPE "HTML"
+OUTPUT_TYPE_HTML=$?
+
+check_output_file_parameter $PARAM_CHECK_FILE
+CHECK_FILE=$?
+
+ADOC_PDF_THEME=~/git/asciidoctor/generate-docx/stern.yml
+ADOC_FONTS_DIR=~/git/asciidoctor/generate-docx/fonts
+ADOC_CSS_THEME=~/git/asciidoctor/generate-docx/stern.css
 
 echo "Generating PDF file."
 echo "Using input file:     " $PARAM_FILENAME
@@ -54,9 +77,17 @@ echo "And fonts directory:  " $ADOC_FONTS_DIR
 
 check_output_file_exists $PARAM_FILENAME $CHECK_FILE
 
-#asciidoctor-pdf -v -a pdf-theme=./stern.yml -a pdf-fontsdir=./fonts $1
-asciidoctor-pdf -v \
-    -a pdf-theme=$ADOC_PDF_THEME \
-    -a pdf-fontsdir=$ADOC_FONTS_DIR \
-    $1
+if [[ $OUTPUT_TYPE_PDF == "1" ]]
+then
+    asciidoctor-pdf -v \
+        -a pdf-theme=$ADOC_PDF_THEME \
+        -a pdf-fontsdir=$ADOC_FONTS_DIR \
+        $1
+fi
 
+if [[ $OUTPUT_TYPE_HTML == "1" ]]
+then
+    asciidoctor \
+        -a stylesheet=$ADOC_CSS_THEME \
+        $1
+fi
