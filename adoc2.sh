@@ -53,6 +53,34 @@ check_output_type () {
     exit 1
 }
 
+do_pdf () {
+    PARAM_FILENAME=$1
+    OUTPUT_TYPE_PDF=$2
+    ADOC_PDF_THEME=$3
+    ADOC_FONTS_DIR=$4
+
+    if [[ $OUTPUT_TYPE_PDF == "1" ]]
+    then
+        asciidoctor-pdf -v \
+            -a pdf-theme=$ADOC_PDF_THEME \
+            -a pdf-fontsdir=$ADOC_FONTS_DIR \
+            $PARAM_FILENAME
+    fi
+}
+
+do_html () {
+    PARAM_FILENAME=$1
+    OUTPUT_TYPE_HTML=$2
+    ADOC_CSS_THEME=$3
+
+    if [[ $OUTPUT_TYPE_HTML == "1" ]]
+    then
+        asciidoctor \
+            -a stylesheet=$ADOC_CSS_THEME \
+            $PARAM_FILENAME
+    fi
+}
+
 PARAM_FILENAME=$1
 PARAM_OUTPUT_TYPE=$2
 PARAM_CHECK_FILE=$3
@@ -77,17 +105,5 @@ echo "And fonts directory:  " $ADOC_FONTS_DIR
 
 check_output_file_exists $PARAM_FILENAME $CHECK_FILE
 
-if [[ $OUTPUT_TYPE_PDF == "1" ]]
-then
-    asciidoctor-pdf -v \
-        -a pdf-theme=$ADOC_PDF_THEME \
-        -a pdf-fontsdir=$ADOC_FONTS_DIR \
-        $1
-fi
-
-if [[ $OUTPUT_TYPE_HTML == "1" ]]
-then
-    asciidoctor \
-        -a stylesheet=$ADOC_CSS_THEME \
-        $1
-fi
+do_pdf $PARAM_FILENAME $OUTPUT_TYPE_PDF $ADOC_PDF_THEME $ADOC_FONTS_DIR
+do_html $PARAM_FILENAME $OUTPUT_TYPE_HTML $ADOC_CSS_THEME
