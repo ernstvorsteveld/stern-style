@@ -1,0 +1,8 @@
+:toc:
+:toclevels: 4
+:sectnums:
+:author: Ernst Vorsteveld
+:title: {doctitle}
+:title-page:
+:revnumber: 0.1
+:revdate: 22-12-2021
